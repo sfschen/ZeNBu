@@ -3,7 +3,7 @@ from scipy.special import loggamma
 
 import time
 
-from velocileptors.Utils.loginterp import loginterp
+from Utils.loginterp import loginterp
 
 class SphericalBesselTransform:
 

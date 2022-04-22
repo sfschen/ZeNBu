@@ -4,9 +4,9 @@ import os
 
 from scipy.interpolate import interp1d
 
-from velocileptors.Utils.spherical_bessel_transform_fftw import SphericalBesselTransform
-from velocileptors.Utils.qfuncfft import QFuncFFT
-from velocileptors.Utils.loginterp import loginterp
+from Utils.spherical_bessel_transform_fftw import SphericalBesselTransform
+from Utils.qfuncfft import QFuncFFT
+from Utils.loginterp import loginterp
 
 class Zenbu:
     '''
@@ -60,10 +60,8 @@ class Zenbu:
         self.setup_powerspectrum()
 
     def setup_powerspectrum(self):
-        
-        # This sets up terms up to one looop in the combination (symmetry factors) they appear in pk
-        
-        self.qf = QFuncFFT(self.kint, self.pint, qv=self.qint, oneloop=self.one_loop, shear=self.shear, third_order=self.third_order)
+                
+        self.qf = QFuncFFT(self.kint, self.pint, qv=self.qint, oneloop=False, shear=True, third_order=False)
         
         # linear terms
         self.Xlin = self.qf.Xlin
@@ -107,14 +105,15 @@ class Zenbu:
             bias_integrands[1,:] = - k * self.Ulin * mu1fac # (1, b1)
             bias_integrands[2,:] = self.corlin - ksq*mu2fac*self.Ulin**2 # (b1, b1)
             bias_integrands[3,:] = - ksq * mu2fac * self.Ulin**2 # (1,b2)
-            bias_integrands[4,:] = -2 * k * self.Ulin * self.corlin * shiftfac + kcu * self.Ulin**3  * mu3fac # (b1,b2)
+            bias_integrands[4,:] = -2 * k * self.Ulin * self.corlin * mu1fac + kcu * self.Ulin**3  * mu3fac # (b1,b2)
             bias_integrands[5,:] = 2 * self.corlin**2 - 4*ksq*self.Ulin**2*self.corlin*mu2fac \
                                        + ksq**2*self.Ulin**4*mu4fac # (b2,b2)
             
-            bias_integrands[6,:] = -ksq * (self.Xs2 + mu2fac*self.Ys2) # (1,bs)
-            bias_integrands[7,:] = -2*k*self.V*shiftfac # (b1,bs)
-            bias_integrands[8,:] = 2*self.chi # (b2,bs)
-            bias_integrands[9,:] = self.zeta # (bs,bs)
+            bias_integrands[6,:] = -0.5 * ksq * (self.Xs2 + mu2fac*self.Ys2) # (1,bs)
+            bias_integrands[7,:] = -k*self.V*mu1fac + 0.5*kcu*self.Ulin*(self.Xs2*mu1fac + self.Ys2*mu2fac) # (b1,bs)
+            bias_integrands[8,:] = 2*self.chi - 2*ksq*self.Ulin*self.V*mu2fac \
+                                      + 0.5*ksq**2*self.Ulin**2*(self.Xs2*mu2fac + self.Ys2*mu4fac) # (b2,bs)
+            bias_integrands[9,:] = self.zeta + 0.25*ksq**4 * (self.Xs2**2 + 2*self.Xs2*self.Ys2*mu2fac + self.Ys2**2*mu4fac)# (bs,bs)
 
             bias_integrands[-1,:] = 1 # this is the counterterm, minus a factor of k2
 
