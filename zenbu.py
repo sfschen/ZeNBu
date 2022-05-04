@@ -112,7 +112,7 @@ class Zenbu:
             
             bias_integrands[6,:] = -0.5 * ksq * (self.Xs2 + mu2fac*self.Ys2) # (1,bs)
             bias_integrands[7,:] = -k*self.V*mu1fac + 0.5*kcu*self.Ulin*(self.Xs2*mu1fac + self.Ys2*mu2fac) # (b1,bs)
-            bias_integrands[8,:] = 2*self.chi - 2*ksq*self.Ulin*self.V*mu2fac \
+            bias_integrands[8,:] = self.chi - 2*ksq*self.Ulin*self.V*mu2fac \
                                       + 0.5*ksq**2*self.Ulin**2*(self.Xs2*mu2fac + self.Ys2*mu4fac) # (b2,bs)
             bias_integrands[9,:] = self.zeta - 4*ksq*(self.Xs4 + mu2fac*self.Ys4) \
                                     + 0.25*ksq**4 * (self.Xs2**2 + 2*self.Xs2*self.Ys2*mu2fac + self.Ys2**2*mu4fac)# (bs,bs)
