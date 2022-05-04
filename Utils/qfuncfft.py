@@ -150,11 +150,20 @@ class QFuncFFT:
         J3 = -0.2*self.xi1m1 - 0.2*self.xi3m1
         J4 = self.xi3m1
         
+        J6 = (7*self.xi00 + 5*self.xi20 - 2*self.xi40)/105.
+        J8 = (-2*self.xi20 - 2*self.xi40)/21.
+        J9 = (-2*self.xi20 + 20*self.xi40)/21.
+        
         self.V = 4 * J2 * self.xi20
         self.Xs2 = 4 * J3**2
         self.Ys2 = 6*J2**2 + 8*J2*J3 + 4*J2*J4 + 4*J3**2 + 8*J3*J4 + 2*J4**2
         self.zeta = 2*(4*self.xi00**2/45. + 8*self.xi20**2/63. + 8*self.xi40**2/35)
         self.chi  = 4*self.xi20**2/3.
+        
+        # one beyond one-loop contribution not reduceable to previous functions:
+        # We write this as Lij = 1/8 * <Delta_i Delta_j s^2_1 s^2_2> = Xs4 * delta_ij + Ys4 qiqj
+        self.Xs4 = 2*J3**2 * J6 + 4*J4**2 * J8
+        self.Ys4 = 2*J3**2 * (2*J6 + 12*J8 + 4*J9) + J3*J4 * (8*J6 + 16*J8 + 4*J9) + J4**2 * (2*J6 + 4*J8 + J9)
     
     def setup_oneloop_2pts(self):
         # same as above but for all the one loop pieces

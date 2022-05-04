@@ -78,7 +78,8 @@ class Zenbu:
         self.V = self.qf.V
         self.zeta = self.qf.zeta
         self.chi = self.qf.chi
-
+        self.Xs4 = self.qf.Xs4
+        self.Ys4 = self.qf.Ys4
 
     def p_integrals(self, k):
         '''
@@ -113,7 +114,8 @@ class Zenbu:
             bias_integrands[7,:] = -k*self.V*mu1fac + 0.5*kcu*self.Ulin*(self.Xs2*mu1fac + self.Ys2*mu2fac) # (b1,bs)
             bias_integrands[8,:] = 2*self.chi - 2*ksq*self.Ulin*self.V*mu2fac \
                                       + 0.5*ksq**2*self.Ulin**2*(self.Xs2*mu2fac + self.Ys2*mu4fac) # (b2,bs)
-            bias_integrands[9,:] = self.zeta + 0.25*ksq**4 * (self.Xs2**2 + 2*self.Xs2*self.Ys2*mu2fac + self.Ys2**2*mu4fac)# (bs,bs)
+            bias_integrands[9,:] = self.zeta - 4*ksq*(self.Xs4 + mu2fac*self.Ys4) \
+                                    + 0.25*ksq**4 * (self.Xs2**2 + 2*self.Xs2*self.Ys2*mu2fac + self.Ys2**2*mu4fac)# (bs,bs)
 
             bias_integrands[-1,:] = 1 # this is the counterterm, minus a factor of k2
 
