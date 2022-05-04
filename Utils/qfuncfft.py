@@ -150,9 +150,9 @@ class QFuncFFT:
         J3 = -0.2*self.xi1m1 - 0.2*self.xi3m1
         J4 = self.xi3m1
         
-        J6 = (7*self.xi00 + 5*self.xi20 - 2*self.xi40)/105.
-        J8 = (-2*self.xi20 - 2*self.xi40)/21.
-        J9 = (-2*self.xi20 + 20*self.xi40)/21.
+        J6 = (7*self.xi00 + 10*self.xi20 + 3*self.xi40)/105.
+        J8 = (-3*self.xi20 - 3*self.xi40)/21.
+        J9 = self.xi40
         
         self.V = 4 * J2 * self.xi20
         self.Xs2 = 4 * J3**2
