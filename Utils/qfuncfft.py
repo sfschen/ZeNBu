@@ -162,7 +162,7 @@ class QFuncFFT:
         
         # one beyond one-loop contribution not reduceable to previous functions:
         # We write this as Lij = 1/8 * <Delta_i Delta_j s^2_1 s^2_2> = Xs4 * delta_ij + Ys4 qiqj
-        self.Xs4 = 2*J3**2 * J6 + 4*J3**2 * J8
+        self.Xs4 = 4*J3**2 * J6 + 4*J3**2 * J8
         self.Ys4 = 2*J6*(3*J2**2+4*J2*J3+2*J2*J4+2*J3**2+4*J3*J4+J4**2) \
                     + 4*J8*(J2+J3+J4)*(J2+2*J3+J4) + J9*(J2+2*J3+J4)**2
     
