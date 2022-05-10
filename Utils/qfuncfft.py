@@ -163,11 +163,11 @@ class QFuncFFT:
         
         # one beyond one-loop contribution not reduceable to previous functions:
         # We write this as Lij = 1/8 * <Delta_i Delta_j s^2_1 s^2_2> = Xs4 * delta_ij + Ys4 qiqj
-        A = 2*J3*(J6+J8)
-        B = 2*J3*(J7+2*J8+J9) + J4*(2*J6+J7+4*J8+J9)
+        K1 = 2*J3*(J6+J8)
+        K2 = 2*J3*(J7+2*J8+J9) + J4*(2*J6+J7+4*J8+J9)
         
-        self.Xs4 = 2*A*J3
-        self.Ys4 = 2*A*(J2+J3+J4) + B*(J2+2*J3+J4)
+        self.Xs4 = 2*K1*J3
+        self.Ys4 = 2*K1*(J2+J3+J4) + K2*(J2+2*J3+J4)
 
     def setup_oneloop_2pts(self):
         # same as above but for all the one loop pieces
