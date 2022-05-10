@@ -115,7 +115,7 @@ class Zenbu:
             bias_integrands[8,:] = self.chi - 2*ksq*self.Ulin*self.V*mu2fac \
                                       + 0.5*ksq**2*self.Ulin**2*(self.Xs2*mu2fac + self.Ys2*mu4fac) # (b2,bs)
             bias_integrands[9,:] = self.zeta - 4*ksq*(self.Xs4 + mu2fac*self.Ys4) \
-                                    + 0.25*ksq**2 * (self.Xs2**2 + 2*self.Xs2*self.Ys2*mu2fac + self.Ys2**2*mu4fac)# (bs,bs)
+                                    + 0.25*k4 * (self.Xs2**2 + 2*self.Xs2*self.Ys2*mu2fac + self.Ys2**2*mu4fac) # (bs,bs)
 
             bias_integrands[-1,:] = 1 # this is the counterterm, minus a factor of k2
 
