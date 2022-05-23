@@ -134,14 +134,23 @@ class Zenbu:
 
         return 4*suppress*np.pi*ret
 
-    def make_ptable(self, kmin = 1e-3, kmax = 3, nk = 100):
+    def make_ptable(self, kmin = 1e-3, kmax = 3, nk = 100, kvec=None):
         '''
         Make a table of different terms of P(k) between a given
-        'kmin', 'kmax' and for 'nk' equally spaced values in log10 of k
+        'kmin', 'kmax' and for 'nk' equally spaced values in log10 of k.
+        
+        If "kvec" is set then it outputs P(k) at those wavenumbers instead.
+        
         This is the most time consuming part of the code.
         '''
-        self.pktable = np.zeros([nk, self.num_power_components+1]) # one column for ks
-        kv = np.logspace(np.log10(kmin), np.log10(kmax), nk)
+        
+        if kvec is None:
+            kv = np.logspace(np.log10(kmin), np.log10(kmax), nk)
+        else:
+            kv = kvec
+            
+        self.pktable = np.zeros([len(kv), self.num_power_components+1]) # one column for ks
+        
         self.pktable[:, 0] = kv[:]
         for foo in range(nk):
             self.pktable[foo, 1:] = self.p_integrals(kv[foo])
