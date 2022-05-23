@@ -152,7 +152,7 @@ class Zenbu:
         self.pktable = np.zeros([len(kv), self.num_power_components+1]) # one column for ks
         
         self.pktable[:, 0] = kv[:]
-        for foo in range(nk):
+        for foo in range(len(kv)):
             self.pktable[foo, 1:] = self.p_integrals(kv[foo])
 
     def combine_bias_terms_pk(self, b1, b2, bs, b3, alpha, sn):
