@@ -8,3 +8,8 @@ For further details on the calculations see [Kokron et al](https://arxiv.org/abs
 Requires [pyFFTW](https://pyfftw.readthedocs.io/en/latest/).
 
 Based on the [velocileptors](https://github.com/sfschen/velocileptors) code.
+
+Can be installed via pip:
+```
+pip install git+https://github.com/sfschen/ZeNBu
+```
