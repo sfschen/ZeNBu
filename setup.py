@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="ZeNBu",
-    version="1.0",
+    version="1.1",
     author="Stephen Chen",
     author_email="sfschen@ias.edu",
     description="Power spectrum code for biased tracers in the Zeldovich approximation.",
